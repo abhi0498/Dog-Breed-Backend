@@ -11,7 +11,8 @@ import cv2
 import numpy as np
 from PIL import Image
 import os
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./dist/static', template_folder='./dist')
+
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -35,9 +36,13 @@ xception.compile(optimizer=optimizer,
                  loss='categorical_crossentropy', metrics=['accuracy'])
 
 
-@app.route('/', methods=['GET', 'POST'])
-@cross_origin()
-def hello():
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/api', methods=['GET', 'POST'])
+def api():
 
     print(request.files['image'])
     # read file from HTTP request
