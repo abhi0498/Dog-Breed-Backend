@@ -11,7 +11,10 @@ import cv2
 import numpy as np
 from PIL import Image
 import os
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder="./dist/static",
+            template_folder="./dist")
+
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -36,10 +39,10 @@ xception.compile(optimizer=optimizer,
                  loss='categorical_crossentropy', metrics=['accuracy'])
 
 
-@app.route('/')
-@cross_origin()
-def home():
-    return app.send_static_file('index.html')
+# @app.route('/')
+# def index():
+
+#     return render_template("index.html")
 
 
 @app.route('/api', methods=['GET', 'POST'])
@@ -69,3 +72,10 @@ def api():
     pred = predict(img, xception)
     print('[Hello]', pred)
     return jsonify({'pred': pred, 'isDog': True})
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+
+    return render_template("index.html")
