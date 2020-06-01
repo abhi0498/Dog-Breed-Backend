@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="{{res.img}}" alt="" style="max-width: 600px;max-height: 600px;">
+    {% if res.pred[0][1] *100 <=10 %}
+    <p>No dog detected</p>
+    {% endif %}
+    {% for p in res.pred %}
+    {% if p[1]*100 >= 1 %}
+    <p>{{p[0]}} - {{ "%.2f"|format(p[1]*100) }}%</p>
+    {% endif %}
+    {% endfor %}
+</body>
+
+</html>

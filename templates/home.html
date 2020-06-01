@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog</title>
+</head>
+
+<body>
+    <h1>Dog</h1>
+
+
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" accept="image/jpeg" required autofocus onchange="loadFile(event)">
+        <!-- <input type="url" name="url" id="url"> -->
+        <button>Submit</button>
+    </form>
+
+    <img src="" alt="Select FIle" style="max-height: 600px;max-width: 600px;">
+
+
+    <!-- <script>
+        console.log(document.querySelector('#image').value == "", document.querySelector('#url').value == "");
+
+        document.querySelector('form').addEventListener('submit', e => {
+            if (document.querySelector('#image').value === "" && document.querySelector('#url').value === "") {
+                alert('')
+                e.preventDefault()
+            }
+        })
+
+    </script> -->
+
+    <script>
+        var loadFile = function (event) {
+            var image = document.querySelector('img');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            console.log(image.src);
+        };
+    </script>
+</body>
+
+</html>
