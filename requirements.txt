@@ -4,5 +4,5 @@ Keras==2.3.1
 numpy==1.18.4
 opencv-python==4.2.0.34
 Pillow==7.1.2
-tensorflow==2.0.0
+tensorflow==2.6.4
 Flask-Cors==3.0.8
